@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Create a Fund Appeal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="appeal">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-5xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div id="appeal-form-wrap">
+    <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-3">
+      <div>
+        <h1 class="font-headline-lg text-headline-lg mb-1">Initialize Medical Fund Appeal</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant">Eight focused steps to a verified funding appeal.</p>
+      </div>
+      <p class="text-[12px] font-label-caps text-on-surface-variant">Prototype — verification is simulated.</p>
+    </div>
+
+    <!-- Stepper (8 steps) -->
+    <div class="overflow-x-auto no-scrollbar mb-8">
+      <ol class="flex items-center min-w-[640px]" id="stepper" aria-label="Appeal progress">
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="1">1</span></li><li class="step-line" data-step="1"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="2">2</span></li><li class="step-line" data-step="2"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="3">3</span></li><li class="step-line" data-step="3"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="4">4</span></li><li class="step-line" data-step="4"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="5">5</span></li><li class="step-line" data-step="5"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="6">6</span></li><li class="step-line" data-step="6"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="7">7</span></li><li class="step-line" data-step="7"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="8">8</span></li>
+      </ol>
+    </div>
+
+    <div class="panel p-6 md:p-10 shadow-glass">
+      <div id="errors-summary" class="hidden mb-4 rounded-xl bg-error-container/60 border border-error/20 p-4 text-error" data-errors-summary tabindex="-1"></div>
+
+      <!-- STEP 1 Patient -->
+      <form id="step-1" class="step-panel" novalidate>
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Patient</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Your identity is pulled from your RUPID.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="field">
+            <label class="field-label" for="a-rupId">RUPID *</label>
+            <input class="field-input mono" id="a-rupId" name="rupId" type="text" placeholder="RBY-XXXX-XXXX-XX"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-patientName">Full Name *</label>
+            <input class="field-input" id="a-patientName" name="patientName" type="text" placeholder="Patient's full name"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-age">Age *</label>
+            <input class="field-input" id="a-age" name="age" type="number" min="1" max="120" placeholder="Years"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-contact">Contact (mobile / email) *</label>
+            <input class="field-input" id="a-contact" name="patientEmail" type="text" placeholder="+91 ... or you@example.com"/>
+            <p class="form-error-msg"></p>
+          </div>
+        </div>
+        <div class="flex justify-end mt-8"><button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container transition-all" data-next="1">Continue →</button></div>
+      </form>
+
+      <!-- STEP 2 Hospital -->
+      <form id="step-2" class="step-panel hidden" novalidate>
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Hospital</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">The attending partner hospital verifies this appeal.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="field md:col-span-2">
+            <label class="field-label" for="a-hospital">Attending Hospital / Medical Center *</label>
+            <select class="field-input" id="a-hospital" name="hospitalId">
+              <option value="">Select a partner hospital</option>
+            </select>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-department">Department *</label>
+            <input class="field-input" id="a-department" name="department" type="text" placeholder="e.g. Cardiac Surgery"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-doctor">Attending Doctor *</label>
+            <input class="field-input" id="a-doctor" name="doctor" type="text" placeholder="Dr. ..."/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-caseNumber">Hospital Admission / Case ID *</label>
+            <input class="field-input mono" id="a-caseNumber" name="caseNumber" type="text" placeholder="e.g. HSP-2026-00123"/>
+            <p class="form-error-msg"></p>
+          </div>
+        </div>
+        <div class="flex justify-between mt-8">
+          <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="2">← Back</button>
+          <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container transition-all" data-next="2">Continue →</button>
+        </div>
+      </form>
+
+      <!-- STEP 3 Medical -->
+      <form id="step-3" class="step-panel hidden" novalidate>
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Medical Information</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Clinical details of the treatment being funded.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="field">
+            <label class="field-label" for="a-diagnosis">Diagnosis *</label>
+            <input class="field-input" id="a-diagnosis" name="diagnosis" type="text" placeholder="Medical condition"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-treatment">Treatment *</label>
+            <input class="field-input" id="a-treatment" name="treatment" type="text" placeholder="Planned treatment"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-procedure">Procedure (optional)</label>
+            <input class="field-input" id="a-procedure" name="procedure" type="text" placeholder="Surgical procedure"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-estCost">Estimated Treatment Cost (INR) *</label>
+            <input class="field-input" id="a-estCost" name="estimatedTreatmentCost" type="number" min="0" placeholder="e.g. 800000"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-duration">Treatment Duration *</label>
+            <input class="field-input" id="a-duration" name="treatmentDuration" type="text" placeholder="e.g. 6 weeks"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-urgency">Urgency *</label>
+            <select class="field-input" id="a-urgency" name="urgency">
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
+              <option value="CRITICAL">Critical</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex justify-between mt-8">
+          <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="3">← Back</button>
+          <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container transition-all" data-next="3">Continue →</button>
+        </div>
+      </form>
+
+      <!-- STEP 4 Funding -->
+      <form id="step-4" class="step-panel hidden" novalidate>
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Funding</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">The amount needed after existing cover.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="field">
+            <label class="field-label" for="a-target">Target Amount (INR) *</label>
+            <input class="field-input" id="a-target" name="targetAmount" type="number" min="0" placeholder="e.g. 800000"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-available">Amount Already Available (INR)</label>
+            <input class="field-input" id="a-available" name="amountAlreadyAvailable" type="number" min="0" value="0"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-insurance">Insurance Coverage (INR)</label>
+            <input class="field-input" id="a-insurance" name="insuranceCoverage" type="number" min="0" value="0"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-required">Amount Required (INR) *</label>
+            <input class="field-input" id="a-required" name="amountRequired" type="number" min="0" placeholder="Auto-calculated"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field md:col-span-2">
+            <label class="field-label" for="a-deadline">Critical Treatment Deadline *</label>
+            <input class="field-input" id="a-deadline" name="deadline" type="date"/>
+            <p class="form-error-msg"></p>
+          </div>
+        </div>
+        <div class="flex justify-between mt-8">
+          <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="4">← Back</button>
+          <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container transition-all" data-next="4">Continue →</button>
+        </div>
+      </form>
+
+      <!-- STEP 5 Story -->
+      <form id="step-5" class="step-panel hidden" novalidate>
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Story</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Help donors understand the medical need.</p>
+        <div class="space-y-5">
+          <div class="field">
+            <label class="field-label" for="a-story">Medical necessity &amp; patient story *</label>
+            <textarea class="field-input" id="a-story" name="story" rows="5" placeholder="Describe the diagnosis, the treatment required and why it is urgent..."></textarea>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="a-fundUsage">How the funds will be used *</label>
+            <textarea class="field-input" id="a-fundUsage" name="fundingUsage" rows="3" placeholder="Hospitalisation, surgery, medicines, follow-up care..."></textarea>
+            <p class="form-error-msg"></p>
+          </div>
+        </div>
+        <div class="flex justify-between mt-8">
+          <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="5">← Back</button>
+          <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container transition-all" data-next="5">Continue →</button>
+        </div>
+      </form>
+
+      <!-- STEP 6 Documents -->
+      <form id="step-6" class="step-panel hidden" novalidate>
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Documents</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Prototype uploads — only file metadata is kept, nothing is sent anywhere.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="doc-slots">
+          <div class="doc-slot" data-doc-type="Medical Report" data-required="1">
+            <label class="field-label">Medical Report *</label>
+            <div class="doc-drop border-2 border-dashed border-outline-variant rounded-xl p-4 text-center cursor-pointer hover:border-secondary/50 hover:bg-surface-container-low transition-colors">
+              <span class="material-symbols-outlined text-secondary">upload_file</span>
+              <p class="text-[12px] text-on-surface-variant mt-1">Click to upload (PDF/JPG/PNG, 5 MB)</p>
+              <p class="doc-name text-[12px] font-semibold text-on-surface mt-1"></p>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="hidden"/>
+            </div>
+          </div>
+          <div class="doc-slot" data-doc-type="Cost Estimate" data-required="1">
+            <label class="field-label">Cost Estimate *</label>
+            <div class="doc-drop border-2 border-dashed border-outline-variant rounded-xl p-4 text-center cursor-pointer hover:border-secondary/50 hover:bg-surface-container-low transition-colors">
+              <span class="material-symbols-outlined text-secondary">upload_file</span>
+              <p class="text-[12px] text-on-surface-variant mt-1">Click to upload (PDF/JPG/PNG, 5 MB)</p>
+              <p class="doc-name text-[12px] font-semibold text-on-surface mt-1"></p>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="hidden"/>
+            </div>
+          </div>
+          <div class="doc-slot" data-doc-type="Prescription" data-required="0">
+            <label class="field-label">Prescription</label>
+            <div class="doc-drop border-2 border-dashed border-outline-variant rounded-xl p-4 text-center cursor-pointer hover:border-secondary/50 hover:bg-surface-container-low transition-colors">
+              <span class="material-symbols-outlined text-secondary">upload_file</span>
+              <p class="text-[12px] text-on-surface-variant mt-1">Optional</p>
+              <p class="doc-name text-[12px] font-semibold text-on-surface mt-1"></p>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="hidden"/>
+            </div>
+          </div>
+          <div class="doc-slot" data-doc-type="Hospital Document" data-required="0">
+            <label class="field-label">Hospital Document</label>
+            <div class="doc-drop border-2 border-dashed border-outline-variant rounded-xl p-4 text-center cursor-pointer hover:border-secondary/50 hover:bg-surface-container-low transition-colors">
+              <span class="material-symbols-outlined text-secondary">upload_file</span>
+              <p class="text-[12px] text-on-surface-variant mt-1">Optional</p>
+              <p class="doc-name text-[12px] font-semibold text-on-surface mt-1"></p>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="hidden"/>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mt-8">
+          <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="6">← Back</button>
+          <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container transition-all" data-next="6">Continue →</button>
+        </div>
+      </form>
+
+      <!-- STEP 7 Authorization -->
+      <form id="step-7" class="step-panel hidden" novalidate>
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Authorization</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Your consent for verification (prototype).</p>
+        <div class="space-y-4">
+          <div class="rounded-xl bg-secondary/5 border border-secondary/15 p-5 flex items-start gap-3">
+            <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary/30 mt-0.5" id="a-consent" name="consent" type="checkbox"/>
+            <label class="font-body-md text-body-md cursor-pointer" for="a-consent">I authorize RUBY to verify my records directly with the attending hospital. *</label>
+          </div>
+          <div class="rounded-xl bg-tertiary-container/5 border border-tertiary-container/15 p-5 text-[13px] text-on-surface-variant">
+            <span class="material-symbols-outlined text-tertiary-container align-middle text-[18px] mr-1">shield</span>
+            This authorizes <strong>simulated</strong> verification only — no real hospital system or database is contacted in this prototype.
+          </div>
+        </div>
+        <div class="flex justify-between mt-8">
+          <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="7">← Back</button>
+          <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container transition-all" data-next="7">Review →</button>
+        </div>
+      </form>
+
+      <!-- STEP 8 Review -->
+      <section id="step-8" class="step-panel hidden">
+        <h2 class="font-headline-md text-headline-md text-secondary mb-1">Review your appeal</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Please confirm everything looks correct before submission.</p>
+        <div id="review-summary" class="rounded-2xl bg-surface-container-low border border-outline-variant/50 p-6 mb-6 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        <div class="flex justify-between">
+          <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="8">← Back</button>
+          <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container hover:shadow-glow transition-all" id="appeal-submit-btn">Submit for Verification →</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Submission success / AI result -->
+  <section id="appeal-success" class="hidden">
+    <div class="max-w-2xl mx-auto text-center py-8">
+      <div class="w-16 h-16 mx-auto rounded-full bg-tertiary-container/10 text-tertiary-container flex items-center justify-center mb-5"><span class="material-symbols-outlined" style="font-size:32px;">task_alt</span></div>
+      <h1 class="font-headline-lg text-headline-lg mb-2">Appeal submitted</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-6">Your appeal has entered the prototype verification pipeline.</p>
+      <div class="card p-6 mb-6 text-left">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <p class="font-label-caps text-label-caps text-on-surface-variant">Case ID</p>
+            <p class="font-data-mono text-data-mono text-[20px] font-bold text-primary" id="su-case-id">—</p>
+          </div>
+          <div id="su-status"></div>
+        </div>
+        <div class="rounded-xl bg-secondary/5 border border-secondary/15 p-4 text-[13px] text-on-surface-variant mb-4">
+          <span class="material-symbols-outlined text-secondary align-middle text-[18px] mr-1">schedule</span>
+          Status: <strong>Verification Pending</strong> — AI-assisted analysis has completed and the case now awaits hospital verification.
+        </div>
+        <div id="su-ai" class="space-y-3"></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/pages/verification.html" class="flex-1 btn btn-primary py-4 rounded-xl hover:bg-primary-container transition-all" id="su-track">Track verification →</a>
+        <a href="/pages/patient-dashboard.html" class="flex-1 border border-secondary text-secondary font-label-caps text-label-caps py-4 rounded-xl hover:bg-secondary/5 transition-all">Go to Dashboard</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/appeal.js"></script>
+</body>
+</html>

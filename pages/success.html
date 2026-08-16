@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Donation Successful</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="success">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-2xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div class="text-center mb-8">
+    <div class="w-20 h-20 mx-auto rounded-full bg-tertiary-container/10 text-tertiary-container flex items-center justify-center mb-5">
+      <span class="material-symbols-outlined" style="font-size:40px; font-variation-settings:'FILL' 1;">check_circle</span>
+    </div>
+    <h1 class="font-headline-lg text-headline-lg mb-2">Payment Successful</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant">Thank you for your support. Your donation is recorded in prototype escrow.</p>
+  </div>
+
+  <div id="receipt" class="panel p-6 md:p-8 mb-6"></div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+    <a href="/pages/ledger.html" class="btn btn-primary py-4 rounded-xl text-center hover:bg-primary-container transition-all">View Transparency Ledger</a>
+    <a href="/pages/cases.html" class="border border-secondary text-secondary font-label-caps text-label-caps py-4 rounded-xl text-center hover:bg-secondary/5 transition-all">Support Another Case</a>
+    <a href="/pages/cases.html" id="back-to-case" class="border border-outline-variant text-on-surface-variant font-label-caps text-label-caps py-4 rounded-xl text-center hover:bg-surface-container transition-all">Back to Case</a>
+  </div>
+  <p class="text-center text-[12px] text-on-surface-variant font-label-caps">Prototype receipt — no real financial transaction occurred.</p>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/donor.js"></script>
+</body>
+</html>

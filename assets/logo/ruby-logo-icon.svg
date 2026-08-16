@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="RUBY icon">
+  <polygon points="50,13 63,26 50,39 37,26" fill="#E11D48"/>
+  <polygon points="50,61 63,74 50,87 37,74" fill="#E11D48"/>
+  <polygon points="13,50 26,37 39,50 26,63" fill="#E11D48"/>
+  <polygon points="87,50 74,37 61,50 74,63" fill="#E11D48"/>
+  <circle cx="50" cy="50" r="15" fill="#E11D48"/>
+</svg>

@@ -1,0 +1,111 @@
+/* Shared RUBY Tailwind configuration — loaded on every page after the Tailwind CDN script. */
+window.tailwind = window.tailwind || {};
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-container": "#edeeef",
+        "on-tertiary-fixed-variant": "#005312",
+        "secondary": "#0061a4",
+        "error-container": "#ffdad6",
+        "error": "#ba1a1a",
+        "on-secondary-fixed-variant": "#00497d",
+        "primary-fixed": "#ffd9e2",
+        "surface-dim": "#d9dadb",
+        "on-secondary": "#ffffff",
+        "tertiary-container": "#1c6d24",
+        "surface": "#f8f9fa",
+        "on-tertiary-container": "#99ec93",
+        "outline-variant": "#d8c1c6",
+        "primary-fixed-dim": "#ffb0c8",
+        "on-primary-fixed-variant": "#792b49",
+        "background": "#f8f9fa",
+        "tertiary-fixed": "#a3f69c",
+        "on-primary": "#ffffff",
+        "on-surface-variant": "#534247",
+        "on-secondary-fixed": "#001d36",
+        "surface-tint": "#964261",
+        "surface-container-lowest": "#ffffff",
+        "inverse-surface": "#2e3132",
+        "inverse-on-surface": "#f0f1f2",
+        "secondary-container": "#77b7ff",
+        "on-error": "#ffffff",
+        "primary": "#792b49",
+        "on-secondary-container": "#00477b",
+        "on-background": "#191c1d",
+        "surface-variant": "#e1e3e4",
+        "on-primary-fixed": "#3e001d",
+        "on-tertiary": "#ffffff",
+        "secondary-fixed-dim": "#9fcaff",
+        "on-surface": "#191c1d",
+        "primary-container": "#964261",
+        "on-tertiary-fixed": "#002204",
+        "inverse-primary": "#ffb0c8",
+        "tertiary": "#005312",
+        "surface-container-low": "#f3f4f5",
+        "surface-bright": "#f8f9fa",
+        "on-error-container": "#93000a",
+        "on-primary-container": "#ffcbd9",
+        "outline": "#867277",
+        "surface-container-high": "#e7e8e9",
+        "tertiary-fixed-dim": "#88d982",
+        "secondary-fixed": "#d1e4ff",
+        "surface-container-highest": "#e1e3e4"
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+        "4xl": "2rem",
+        "card": "1.25rem",
+        "pill": "9999px",
+        "full": "9999px"
+      },
+      spacing: {
+        "stack-gap-sm": "8px",
+        "stack-gap-md": "16px",
+        "stack-gap-lg": "32px",
+        "base": "8px",
+        "section-gap": "80px",
+        "gutter": "24px",
+        "container-padding-mobile": "20px",
+        "container-padding-desktop": "40px"
+      },
+      fontFamily: {
+        "headline-md": ["Manrope", "sans-serif"],
+        "headline-lg-mobile": ["Manrope", "sans-serif"],
+        "display-lg": ["Manrope", "sans-serif"],
+        "body-sm": ["Inter", "sans-serif"],
+        "body-md": ["Inter", "sans-serif"],
+        "label-caps": ["Inter", "sans-serif"],
+        "data-mono": ["JetBrains Mono", "monospace"],
+        "body-lg": ["Inter", "sans-serif"],
+        "headline-lg": ["Manrope", "sans-serif"]
+      },
+      fontSize: {
+        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }],
+        "display-xl": ["56px", { lineHeight: "60px", letterSpacing: "-0.03em", fontWeight: "800" }],
+        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+        "data-mono": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500" }],
+        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "700" }]
+      },
+      boxShadow: {
+        'glass': '0px 12px 32px rgba(0, 97, 164, 0.08)',
+        'glow': '0 0 20px rgba(150, 66, 97, 0.25)',
+        'glow-lg': '0 0 28px rgba(150, 66, 97, 0.32)',
+        'card': '0 1px 2px rgba(26, 29, 30, 0.04), 0 10px 28px -14px rgba(121, 43, 73, 0.14)',
+        'card-hover': '0 2px 4px rgba(26, 29, 30, 0.05), 0 22px 44px -18px rgba(121, 43, 73, 0.22)',
+        'soft': '0 18px 48px -20px rgba(0, 97, 164, 0.18)',
+        'pop': '0 28px 70px -20px rgba(26, 29, 30, 0.30)'
+      }
+    }
+  }
+};

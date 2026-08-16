@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Hospital Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="hospital-dashboard">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div id="hospital-login-required" class="hidden">
+    <div class="max-w-md mx-auto text-center py-16">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-5 shadow-soft"><span class="material-symbols-outlined" style="font-size:32px;">local_hospital</span></div>
+      <span class="eyebrow justify-center">Hospital partner portal</span>
+      <h1 class="section-title text-on-surface mt-3 mb-2">Sign in as a hospital partner</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-6">Use the demo hospital account to open the dashboard.</p>
+      <div class="flex flex-col gap-3">
+        <a href="/pages/login.html?next=/pages/hospital-dashboard.html" class="btn btn-primary py-3.5 w-full">Sign in</a>
+        <a href="/pages/hospital-register.html" class="btn btn-outline py-3.5 w-full">Register as partner</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="hospital-dash" class="hidden">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+      <div class="flex items-center gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-[#0a74bd] text-on-secondary flex items-center justify-center shadow-soft"><span class="material-symbols-outlined" style="font-size:32px;">local_hospital</span></div>
+        <div>
+          <span class="eyebrow">Hospital dashboard</span>
+          <h1 class="font-headline-lg text-headline-lg leading-tight" id="hd-name">—</h1>
+          <p class="font-data-mono text-data-mono text-secondary mt-0.5" id="hd-id">—</p>
+          <div class="flex items-center gap-2 mt-1.5"><span id="hd-partner-badge"></span></div>
+        </div>
+      </div>
+      <a href="/pages/hospital-register.html" class="link-underline self-start md:self-center font-label-caps text-label-caps">Edit partner details</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-8" id="hd-stats">
+      ${Array.from({length: 6}).map(() => '<div class="stat-tile skeleton h-28"></div>').join("")}
+    </div>
+
+    <!-- Verification queue -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-headline-md text-headline-md flex items-center gap-2"><span class="material-symbols-outlined text-secondary">verified_user</span>Patient Case Verification</h2>
+        <span id="hd-pending-count" class="font-data-mono text-[13px] text-on-surface-variant px-3 py-1 rounded-full bg-surface-container"></span>
+      </div>
+      <div id="hd-queue" class="space-y-4"></div>
+    </section>
+
+    <!-- Disbursements -->
+    <section id="hd-disbursements" class="mb-10">
+      <h2 class="font-headline-md text-headline-md mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary">account_balance_wallet</span>Funding &amp; Disbursement Status</h2>
+      <div id="hd-disb-list" class="space-y-4"></div>
+    </section>
+
+    <!-- Notifications -->
+    <section id="notifications">
+      <h2 class="font-headline-md text-headline-md mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary">notifications</span>Notifications</h2>
+      <div id="hd-notifications" class="space-y-3"></div>
+    </section>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/hospital.js"></script>
+</body>
+</html>

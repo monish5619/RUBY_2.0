@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Secure Payment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="payment">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-3xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div id="payment-panel">
+    <div class="mb-6 flex items-center justify-between">
+      <h1 class="font-headline-lg text-headline-lg">Secure Payment</h1>
+      <span class="status-badge escrow"><span class="material-symbols-outlined text-[13px]">science</span>Test Mode</span>
+    </div>
+
+    <div class="panel p-6 md:p-8 mb-6">
+      <dl class="grid grid-cols-2 gap-4 text-[14px]">
+        <div><dt class="text-on-surface-variant">Donation amount</dt><dd class="font-data-mono font-bold text-primary text-[18px]" id="pay-amount">—</dd></div>
+        <div><dt class="text-on-surface-variant">Recipient case</dt><dd class="font-data-mono" id="pay-case">—</dd></div>
+        <div><dt class="text-on-surface-variant">Hospital</dt><dd id="pay-hospital">—</dd></div>
+        <div><dt class="text-on-surface-variant">Platform fee</dt><dd class="font-data-mono" id="pay-fee">—</dd></div>
+      </dl>
+      <div class="rounded-xl bg-surface-container p-4 mt-4 text-[13px] text-on-surface-variant">
+        <span class="material-symbols-outlined text-secondary align-middle text-[18px] mr-1">info</span>
+        This is a <strong>simulated test payment</strong>. Use any fake details — no real card numbers are accepted or stored.
+      </div>
+    </div>
+
+    <!-- Methods -->
+    <div class="grid grid-cols-3 gap-3 mb-6" role="tablist" aria-label="Payment methods">
+      <button class="pay-method border-2 border-primary bg-primary/5 rounded-xl py-4 flex flex-col items-center gap-1 transition-all" data-method="UPI">
+        <span class="material-symbols-outlined text-secondary">qr_code_2</span><span class="font-label-caps text-label-caps">UPI</span>
+      </button>
+      <button class="pay-method border border-outline-variant rounded-xl py-4 flex flex-col items-center gap-1 transition-all hover:border-secondary/50" data-method="Card">
+        <span class="material-symbols-outlined text-on-surface-variant">credit_card</span><span class="font-label-caps text-label-caps">Card</span>
+      </button>
+      <button class="pay-method border border-outline-variant rounded-xl py-4 flex flex-col items-center gap-1 transition-all hover:border-secondary/50" data-method="Net Banking">
+        <span class="material-symbols-outlined text-on-surface-variant">account_balance</span><span class="font-label-caps text-label-caps">Net Banking</span>
+      </button>
+    </div>
+
+    <form id="payment-form" class="panel p-6 md:p-8" novalidate>
+      <div id="method-UPI" class="method-panel">
+        <div class="field">
+          <label class="field-label" for="upi-id">UPI ID *</label>
+          <input class="field-input mono" id="upi-id" name="upiId" type="text" placeholder="yourname@upi" autocomplete="off"/>
+          <p class="form-error-msg"></p>
+        </div>
+        <div class="rounded-xl bg-surface-container p-4 text-[13px] text-on-surface-variant mt-3">
+          <span class="material-symbols-outlined text-secondary align-middle text-[18px] mr-1">qr_code_2</span>
+          Prototype UPI — enter any demo ID like <span class="font-data-mono">donor@ruby</span>.
+        </div>
+      </div>
+      <div id="method-Card" class="method-panel hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="field md:col-span-2">
+            <label class="field-label" for="card-name">Name on Card *</label>
+            <input class="field-input" id="card-name" name="cardName" type="text" placeholder="FULL NAME" autocomplete="off"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field md:col-span-2">
+            <label class="field-label" for="card-number">Card Number *</label>
+            <input class="field-input mono" id="card-number" name="cardNumber" type="text" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="off"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="card-expiry">Expiry *</label>
+            <input class="field-input mono" id="card-expiry" name="cardExpiry" type="text" placeholder="MM/YY" maxlength="5" autocomplete="off"/>
+            <p class="form-error-msg"></p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="card-cvv">CVV *</label>
+            <input class="field-input mono" id="card-cvv" name="cardCvv" type="password" inputmode="numeric" maxlength="4" placeholder="•••" autocomplete="off"/>
+            <p class="form-error-msg"></p>
+          </div>
+        </div>
+        <div class="rounded-xl bg-surface-container p-4 text-[13px] text-on-surface-variant mt-3">
+          <span class="material-symbols-outlined text-secondary align-middle text-[18px] mr-1">lock</span>
+          Test card only — try <span class="font-data-mono">4111 1111 1111 1111</span>. No real charge is made.
+        </div>
+      </div>
+      <div id="method-Net-Banking" class="method-panel hidden">
+        <div class="field">
+          <label class="field-label" for="bank">Select Bank *</label>
+          <select class="field-input" id="bank" name="bank">
+            <option value="">Choose a demo bank</option>
+            <option>Demo National Bank</option>
+            <option>Ruby Cooperative Bank</option>
+            <option>Trust Central Bank</option>
+          </select>
+          <p class="form-error-msg"></p>
+        </div>
+        <div class="rounded-xl bg-surface-container p-4 text-[13px] text-on-surface-variant mt-3">
+          <span class="material-symbols-outlined text-secondary align-middle text-[18px] mr-1">account_balance</span>
+          Net banking is simulated — no real bank login occurs.
+        </div>
+      </div>
+
+      <button type="submit" class="w-full btn btn-primary mt-6 w-full" id="pay-submit">
+        Pay <span id="pay-submit-amount">—</span> securely
+      </button>
+    </form>
+  </div>
+
+  <!-- Processing animation -->
+  <div id="processing-panel" class="hidden text-center py-20">
+    <div class="w-20 h-20 mx-auto mb-6 relative">
+      <div class="absolute inset-0 rounded-full border-4 border-secondary/20"></div>
+      <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-secondary animate-spin"></div>
+      <span class="absolute inset-0 flex items-center justify-center material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;">lock</span>
+    </div>
+    <h2 class="font-headline-lg text-headline-lg mb-2">Processing payment…</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant">Simulating a secure test transaction. Please wait.</p>
+    <ol id="processing-steps" class="max-w-xs mx-auto mt-8 text-left space-y-3">
+      <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md text-[14px]">Contacting payment gateway (test)</p></li>
+      <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md text-[14px]">Authorising transaction…</p></li>
+      <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md text-[14px]">Writing to prototype ledger…</p></li>
+    </ol>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/donor.js"></script>
+</body>
+</html>

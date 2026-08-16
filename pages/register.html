@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Create your RUPID</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="register">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <!-- Left: brand / info -->
+    <aside class="lg:col-span-4 hidden lg:flex flex-col gap-6">
+      <div class="glass-panel rounded-3xl p-8">
+        <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">verified_user</span></div>
+        <h2 class="font-headline-md text-headline-md mb-2">Secure Patient Identity</h2>
+        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Your RUBY Universal Patient ID (RUPID) is the key to transparent, verified medical crowdfunding across our partner hospital network.</p>
+        <div class="mt-6 border-t border-white/40 pt-6 space-y-3">
+          <div class="flex items-center gap-3"><span class="material-symbols-outlined text-tertiary-container text-[18px]">check_circle</span><span class="font-body-sm text-body-sm">One RUPID for all appeals</span></div>
+          <div class="flex items-center gap-3"><span class="material-symbols-outlined text-tertiary-container text-[18px]">check_circle</span><span class="font-body-sm text-body-sm">Verified by partner hospitals</span></div>
+          <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">security</span><span class="font-body-sm text-body-sm">Prototype privacy-first verification</span></div>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-secondary/5 border border-secondary/15 p-5 text-[13px] text-on-surface-variant">
+        <span class="font-label-caps text-label-caps text-secondary block mb-1">Demo OTP</span>
+        For this prototype, the OTP step accepts the code <span class="font-data-mono text-data-mono font-bold text-on-surface">123456</span>. No real SMS is sent.
+      </div>
+    </aside>
+
+    <!-- Right: wizard -->
+    <section class="lg:col-span-8">
+      <div class="mb-8">
+        <h1 class="font-headline-lg text-headline-lg text-on-surface mb-1">Create your RUPID</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant">Five short steps to a verified patient identity.</p>
+      </div>
+
+      <!-- Stepper -->
+      <ol class="flex items-center mb-8" id="stepper" aria-label="Registration progress">
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="1">1</span></li>
+        <li class="step-line" data-step="1"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="2">2</span></li>
+        <li class="step-line" data-step="2"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="3">3</span></li>
+        <li class="step-line" data-step="3"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="4">4</span></li>
+        <li class="step-line" data-step="4"></li>
+        <li class="flex flex-col items-center"><span class="step-dot" data-step="5">5</span></li>
+      </ol>
+
+      <div class="panel p-6 md:p-10 shadow-glass">
+        <div id="errors-summary" class="hidden mb-4 rounded-xl bg-error-container/60 border border-error/20 p-4 text-error" data-errors-summary tabindex="-1"></div>
+
+        <!-- STEP 1: Personal information -->
+        <form id="step-1" class="step-panel" novalidate>
+          <h2 class="font-headline-md text-headline-md text-secondary mb-1">Personal Information</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">How we should know you.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="field md:col-span-2">
+              <label class="field-label" for="fullName">Full Legal Name *</label>
+              <input class="field-input" id="fullName" name="fullName" type="text" placeholder="As it appears on official IDs" autocomplete="name"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="dob">Date of Birth *</label>
+              <input class="field-input" id="dob" name="dob" type="date"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="age">Age *</label>
+              <input class="field-input" id="age" name="age" type="number" min="1" max="120" placeholder="Years"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="mobile">Mobile Number *</label>
+              <input class="field-input mono" id="mobile" name="mobile" type="tel" placeholder="+91 98XXX XXXXX" autocomplete="tel"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="email">Email *</label>
+              <input class="field-input" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field md:col-span-2">
+              <label class="field-label" for="address">Address *</label>
+              <textarea class="field-input" id="address" name="address" rows="2" placeholder="Street, area, city"></textarea>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="communityId">Student / Community ID (optional)</label>
+              <input class="field-input" id="communityId" name="communityId" type="text" placeholder="e.g. SID-2026-0042"/>
+            </div>
+          </div>
+          <div class="flex justify-end mt-8">
+            <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container hover:shadow-glow transition-all" data-next="1">Continue →</button>
+          </div>
+        </form>
+
+        <!-- STEP 2: Identity information -->
+        <form id="step-2" class="step-panel hidden" novalidate>
+          <h2 class="font-headline-md text-headline-md text-secondary mb-1">Identity Information</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">We verify your identity with a government document (prototype only).</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="field">
+              <label class="field-label" for="idType">Identity Document Type *</label>
+              <select class="field-input" id="idType" name="idType">
+                <option value="">Select document</option>
+                <option>Aadhaar Card</option>
+                <option>PAN Card</option>
+                <option>Passport</option>
+                <option>Driving Licence</option>
+                <option>Voter ID</option>
+              </select>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="idNumber">Document Number *</label>
+              <input class="field-input mono" id="idNumber" name="idNumber" type="text" placeholder="Document number"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field md:col-span-2">
+              <label class="field-label" for="idUpload">Upload Document (PDF / JPG / PNG, max 5 MB) *</label>
+              <div class="border-2 border-dashed border-outline-variant rounded-2xl bg-surface/60 p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:border-secondary/50 hover:bg-surface-container-low transition-all group" id="drop-area">
+                <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-secondary text-[24px]">upload_file</span></div>
+                <p class="font-body-md text-body-md font-semibold">Drag &amp; drop your document here</p>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-3" id="upload-hint">PDF, JPG, PNG · Max 5 MB</p>
+                <button type="button" class="px-6 py-2 rounded-lg border border-secondary text-secondary font-label-caps text-label-caps hover:bg-secondary/5">Browse Files</button>
+                <input accept=".pdf,.jpg,.jpeg,.png" class="hidden" id="idUpload" name="idUpload" type="file"/>
+              </div>
+              <p class="form-error-msg" id="upload-error"></p>
+            </div>
+            <div class="field md:col-span-2 flex items-start gap-3 mt-2">
+              <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary/30" id="consent" name="consent" type="checkbox"/>
+              <label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer" for="consent">I consent to RUBY processing my identity document for prototype verification only. *</label>
+              <p class="form-error-msg"></p>
+            </div>
+          </div>
+          <div class="flex justify-between mt-8">
+            <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="2">← Back</button>
+            <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container hover:shadow-glow transition-all" data-next="2">Continue →</button>
+          </div>
+        </form>
+
+        <!-- STEP 3: OTP -->
+        <section id="step-3" class="step-panel hidden">
+          <h2 class="font-headline-md text-headline-md text-secondary mb-1">Verify Mobile Number</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">A 6-digit code was "sent" to your mobile (demo).</p>
+          <div class="rounded-xl bg-primary/5 border border-primary/20 p-4 mb-6 flex items-center justify-between">
+            <span class="font-label-caps text-label-caps text-primary">Demo OTP</span>
+            <button type="button" class="font-data-mono text-data-mono font-bold text-on-surface hover:text-primary" data-fill-otp>123456 (tap to fill)</button>
+          </div>
+          <div class="flex justify-center gap-2 mb-6" id="otp-box">
+            <input class="w-12 h-14 text-center font-headline-md text-headline-md bg-surface border border-outline-variant rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" maxlength="1" inputmode="numeric" data-otp="0" aria-label="OTP digit 1"/>
+            <input class="w-12 h-14 text-center font-headline-md text-headline-md bg-surface border border-outline-variant rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" maxlength="1" inputmode="numeric" data-otp="1" aria-label="OTP digit 2"/>
+            <input class="w-12 h-14 text-center font-headline-md text-headline-md bg-surface border border-outline-variant rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" maxlength="1" inputmode="numeric" data-otp="2" aria-label="OTP digit 3"/>
+            <input class="w-12 h-14 text-center font-headline-md text-headline-md bg-surface border border-outline-variant rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" maxlength="1" inputmode="numeric" data-otp="3" aria-label="OTP digit 4"/>
+            <input class="w-12 h-14 text-center font-headline-md text-headline-md bg-surface border border-outline-variant rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" maxlength="1" inputmode="numeric" data-otp="4" aria-label="OTP digit 5"/>
+            <input class="w-12 h-14 text-center font-headline-md text-headline-md bg-surface border border-outline-variant rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" maxlength="1" inputmode="numeric" data-otp="5" aria-label="OTP digit 6"/>
+          </div>
+          <p class="text-center font-body-sm text-body-sm text-on-surface-variant mb-6">Prototype OTP: <span class="font-data-mono text-data-mono font-bold">123456</span></p>
+          <div class="flex justify-between">
+            <button type="button" class="border border-outline-variant font-label-caps text-label-caps px-6 py-3.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors" data-prev="3">← Back</button>
+            <button type="button" class="btn btn-primary px-8 py-3.5 rounded-xl hover:bg-primary-container hover:shadow-glow transition-all" data-otp-submit>Verify &amp; Continue</button>
+          </div>
+        </section>
+
+        <!-- STEP 4: Verification -->
+        <section id="step-4" class="step-panel hidden">
+          <h2 class="font-headline-md text-headline-md text-secondary mb-1">Verification in progress</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-8">Running simulated checks — this does not connect to any real government database.</p>
+          <ol id="verify-steps" class="space-y-5">
+            <li class="tl-item" data-ver="0"><span class="tl-dot"></span><p class="font-body-md font-semibold">Identity Submitted</p><p class="font-body-sm text-body-sm text-on-surface-variant">Details captured successfully.</p></li>
+            <li class="tl-item" data-ver="1"><span class="tl-dot"></span><p class="font-body-md font-semibold">Document Checked</p><p class="font-body-sm text-body-sm text-on-surface-variant">Uploaded document validated for format and readability.</p></li>
+            <li class="tl-item" data-ver="2"><span class="tl-dot"></span><p class="font-body-md font-semibold">Information Matched</p><p class="font-body-sm text-body-sm text-on-surface-variant">Name, DOB and mobile cross-checked against the document.</p></li>
+            <li class="tl-item" data-ver="3"><span class="tl-dot"></span><p class="font-body-md font-semibold">Verification Complete</p><p class="font-body-sm text-body-sm text-on-surface-variant">Generating your RUPID…</p></li>
+          </ol>
+        </section>
+
+        <!-- STEP 5: RUPID generated -->
+        <section id="step-5" class="step-panel hidden">
+          <div class="text-center mb-8">
+            <div class="w-16 h-16 mx-auto rounded-full bg-tertiary-container/10 text-tertiary-container flex items-center justify-center mb-4"><span class="material-symbols-outlined" style="font-size:32px;">verified</span></div>
+            <h2 class="font-headline-md text-headline-md mb-1">Your RUPID is ready</h2>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">RUBY Universal Patient ID — save it securely.</p>
+          </div>
+          <div class="rounded-2xl bg-surface-container-low border border-outline-variant/50 p-8 mb-6">
+            <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">RUPID</p>
+            <p class="font-data-mono text-data-mono text-[26px] font-bold text-primary tracking-wide" id="gen-rup-id">—</p>
+            <dl class="grid grid-cols-2 gap-4 mt-6 text-[13px]">
+              <div><dt class="text-on-surface-variant">Verification Status</dt><dd><span class="status-badge verified"><span class="material-symbols-outlined text-[13px]">verified</span>Verified</span></dd></div>
+              <div><dt class="text-on-surface-variant">Verification Score</dt><dd class="font-data-mono font-bold text-on-surface" id="gen-score">96 / 100</dd></div>
+              <div><dt class="text-on-surface-variant">Created Date</dt><dd class="font-data-mono" id="gen-created">—</dd></div>
+              <div><dt class="text-on-surface-variant">Validity</dt><dd class="font-data-mono" id="gen-validity">12 months</dd></div>
+            </dl>
+          </div>
+          <div class="rounded-xl bg-secondary/5 border border-secondary/15 p-4 text-[13px] text-on-surface-variant mb-6">
+            <span class="material-symbols-outlined text-secondary align-middle text-[18px] mr-1">lock</span>
+            RUPID is stored locally on this device (prototype). The RUPID lifecycle — verification and annual reverification — is simulated.
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/pages/patient-dashboard.html" class="flex-1 text-center btn btn-primary py-4 rounded-xl hover:bg-primary-container transition-all">Go to Patient Dashboard</a>
+            <a href="/pages/appeal.html" class="flex-1 text-center border border-secondary text-secondary font-label-caps text-label-caps py-4 rounded-xl hover:bg-secondary/5 transition-all">Create a Fund Appeal →</a>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/patient.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Make a Donation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="donor">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-6xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div class="mb-8">
+    <span class="font-label-caps text-label-caps text-secondary">Make an Impact</span>
+    <h1 class="font-headline-lg text-headline-lg mt-1 mb-1">Donate to a verified case</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant">Direct, transparent contributions in INR to verified medical cases.</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <!-- Left: flow -->
+    <div class="lg:col-span-8 space-y-6">
+      <!-- 1. Case -->
+      <section class="panel p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-[14px]">1</span>
+          <h2 class="font-headline-md text-headline-md">Identify Case</h2>
+        </div>
+        <div id="donor-case"></div>
+        <details class="mt-4 rounded-xl border border-outline-variant/50 p-4">
+          <summary class="cursor-pointer font-label-caps text-label-caps text-secondary">Donate to a different case</summary>
+          <div class="flex flex-col sm:flex-row gap-3 mt-3">
+            <input class="field-input" id="donor-case-input" type="text" placeholder="Enter case ID e.g. CASE-RBY-1003"/>
+            <button class="btn btn-secondary px-6 py-3 rounded-xl hover:bg-secondary/90 transition-colors" id="donor-case-load">Load case</button>
+          </div>
+        </details>
+      </section>
+
+      <!-- 2. Amount -->
+      <section class="panel p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-[14px]">2</span>
+          <h2 class="font-headline-md text-headline-md">Contribution Amount</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4" id="amount-presets">
+          <button class="amount-btn border border-outline-variant rounded-xl py-3 font-data-mono text-data-mono hover:bg-secondary/10 hover:border-secondary transition-all" data-amount="500">₹500</button>
+          <button class="amount-btn border-2 border-primary bg-primary/5 rounded-xl py-3 font-data-mono text-data-mono font-bold text-primary transition-all" data-amount="1000">₹1,000</button>
+          <button class="amount-btn border border-outline-variant rounded-xl py-3 font-data-mono text-data-mono hover:bg-secondary/10 hover:border-secondary transition-all" data-amount="2500">₹2,500</button>
+          <button class="amount-btn border border-outline-variant rounded-xl py-3 font-data-mono text-data-mono hover:bg-secondary/10 hover:border-secondary transition-all" data-amount="5000">₹5,000</button>
+        </div>
+        <div class="relative">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 font-data-mono text-data-mono text-on-surface-variant">₹</span>
+          <input class="field-input pl-9 text-center font-data-mono text-[22px]" id="donor-amount" type="number" min="100" placeholder="Custom amount (min ₹100)"/>
+          <p class="form-error-msg"></p>
+        </div>
+      </section>
+
+      <!-- 3. Review -->
+      <section class="panel p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-[14px]">3</span>
+          <h2 class="font-headline-md text-headline-md">Review Donation</h2>
+        </div>
+        <dl id="donor-review" class="space-y-3 text-[14px]"></dl>
+        <button class="w-full btn btn-primary mt-6 w-full" id="donor-continue">
+          Continue to Payment →
+        </button>
+        <p class="text-center font-body-sm text-body-sm text-on-surface-variant mt-3 flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px]">lock</span>Payment Gateway — Test Mode. No real charge.</p>
+      </section>
+    </div>
+
+    <!-- Right: ledger / context -->
+    <aside class="lg:col-span-4 flex flex-col gap-5">
+      <div class="panel-dark p-6">
+        <p class="font-label-caps text-label-caps text-secondary-container mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">history</span>Live Payout Ledger</p>
+        <div id="ledger-ticker" class="space-y-3">
+          <div class="skeleton h-10"></div><div class="skeleton h-10"></div><div class="skeleton h-10"></div>
+        </div>
+      </div>
+      <div class="panel p-6">
+        <h3 class="font-headline-md text-headline-md text-secondary border-b border-outline-variant/30 pb-3 mb-4">Why RUBY?</h3>
+        <ul class="space-y-4">
+          <li class="flex gap-3"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">verified_user</span><div><p class="font-body-md font-semibold">Verified Cases</p><p class="font-body-sm text-body-sm text-on-surface-variant">Every appeal is confirmed by a partner hospital (prototype).</p></div></li>
+          <li class="flex gap-3"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">account_balance</span><div><p class="font-body-md font-semibold">Direct Settlements</p><p class="font-body-sm text-body-sm text-on-surface-variant">Funds are held in prototype escrow and settled to the hospital on verified milestones.</p></div></li>
+          <li class="flex gap-3"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">visibility</span><div><p class="font-body-md font-semibold">Full Transparency</p><p class="font-body-sm text-body-sm text-on-surface-variant">Every transaction is visible on the prototype ledger.</p></div></li>
+        </ul>
+      </div>
+      <a href="/pages/ledger.html" class="text-center text-secondary font-label-caps text-label-caps hover:underline">View the transparency ledger →</a>
+    </aside>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/donor.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Patient Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="patient-dashboard">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div id="patient-login-required" class="hidden">
+    <div class="max-w-md mx-auto text-center py-16">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-5 shadow-soft"><span class="material-symbols-outlined" style="font-size:32px;">account_circle</span></div>
+      <span class="eyebrow justify-center">Patient portal</span>
+      <h1 class="section-title text-on-surface mt-3 mb-2">Sign in as a patient</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-6">Sign in with a demo patient account to view your dashboard.</p>
+      <div class="flex flex-col gap-3">
+        <a href="/pages/login.html?next=/pages/patient-dashboard.html" class="btn btn-primary py-3.5 w-full">Sign in</a>
+        <a href="/pages/register.html" class="btn btn-outline py-3.5 w-full">Create a RUPID</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="patient-dash" class="hidden">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+      <div class="flex items-center gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-on-primary flex items-center justify-center font-headline-md text-[22px] font-bold shadow-glow" id="pd-avatar">�</div>
+        <div>
+          <span class="eyebrow">Patient dashboard</span>
+          <h1 class="font-headline-lg text-headline-lg leading-tight" id="pd-name">—</h1>
+          <p class="font-data-mono text-data-mono text-secondary mt-0.5" id="pd-rupid">—</p>
+          <div class="flex items-center gap-2 mt-1.5"><span id="pd-verification-badge"></span><span class="status-badge verified"><span class="material-symbols-outlined text-[13px]">verified</span>Score <span id="pd-score">—</span></span></div>
+        </div>
+      </div>
+      <a href="/pages/appeal.html" class="btn btn-primary self-start md:self-center px-6 py-3.5">
+        <span class="material-symbols-outlined text-[18px]">add_circle</span> New Fund Appeal
+      </a>
+    </div>
+
+    <!-- Status cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8" id="pd-cards">
+      ${Array.from({length: 5}).map(() => '<div class="stat-tile skeleton h-32"></div>').join("")}
+    </div>
+
+    <!-- Timeline + funding -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-8">
+      <div class="lg:col-span-7 panel p-6 md:p-8">
+        <h2 class="font-headline-md text-headline-md mb-6 flex items-center gap-2"><span class="material-symbols-outlined text-secondary">timeline</span>Verification journey</h2>
+        <ol id="pd-timeline" class="space-y-1">
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">Identity verified</p><p class="font-body-sm text-body-sm text-on-surface-variant">RUPID generated</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">Appeal created</p><p class="font-body-sm text-body-sm text-on-surface-variant">Medical case submitted</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">AI verification</p><p class="font-body-sm text-body-sm text-on-surface-variant">Prototype analysis</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">Hospital verification</p><p class="font-body-sm text-body-sm text-on-surface-variant">Awaiting partner confirmation</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">Admin approval</p><p class="font-body-sm text-body-sm text-on-surface-variant">Human review</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">Fundraising &amp; disbursement</p><p class="font-body-sm text-body-sm text-on-surface-variant">Donations → escrow → hospital</p></li>
+        </ol>
+      </div>
+      <div class="lg:col-span-5 flex flex-col gap-5">
+        <div class="panel p-6 md:p-8" id="pd-funding-card">
+          <h2 class="font-headline-md text-headline-md mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-primary">savings</span>Funding</h2>
+          <div id="pd-funding"></div>
+        </div>
+        <div class="rounded-3xl bg-gradient-to-br from-secondary to-[#0a74bd] text-on-secondary p-6 md:p-8 shadow-soft" id="pd-next-step-card">
+          <h3 class="font-headline-md text-[18px] mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[20px]">flag</span>Next step</h3>
+          <p class="font-body-sm text-on-secondary/90 mb-4" id="pd-next-step-text">—</p>
+          <a href="/pages/appeal.html" class="btn btn-light px-5 py-3 font-label-caps text-label-caps" id="pd-next-step-cta">Create appeal</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- My appeals -->
+    <section id="cases" class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-headline-md text-headline-md flex items-center gap-2"><span class="material-symbols-outlined text-secondary">folder_shared</span>My Appeals</h2>
+        <a href="/pages/appeal.html" class="link-underline font-label-caps text-label-caps">New appeal</a>
+      </div>
+      <div id="pd-appeals" class="space-y-4"></div>
+    </section>
+
+    <!-- Notifications -->
+    <section id="notifications" class="mb-10">
+      <h2 class="font-headline-md text-headline-md mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary">notifications</span>Notifications</h2>
+      <div id="pd-notifications" class="space-y-3"></div>
+    </section>
+
+    <!-- Profile -->
+    <section id="profile">
+      <h2 class="font-headline-md text-headline-md mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary">account_circle</span>Profile</h2>
+      <div class="panel p-6 md:p-8">
+        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-[14px]" id="pd-profile"></dl>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/cases.js"></script>
+<script src="/js/patient-dashboard.js"></script>
+</body>
+</html>

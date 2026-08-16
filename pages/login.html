@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="login">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-md mx-auto px-6 py-12">
+  <div class="text-center mb-8">
+    <div class="w-14 h-14 mx-auto rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-soft"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">lock</span></div>
+    <span class="eyebrow justify-center">Secure sign in</span><h1 class="section-title text-on-surface mt-3 mb-1">Welcome back</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant">Sign in to your RUBY account.</p>
+  </div>
+
+  <form id="login-form" class="panel p-6 md:p-8 shadow-glass" novalidate>
+    <div id="errors-summary" class="hidden mb-4 rounded-xl bg-error-container/60 border border-error/20 p-4 text-error text-[13px]" data-errors-summary tabindex="-1"></div>
+    <div class="field mb-5">
+      <label class="field-label" for="login-email">Email</label>
+      <input class="field-input" id="login-email" name="email" type="email" placeholder="you@ruby.demo" autocomplete="username"/>
+      <p class="form-error-msg"></p>
+    </div>
+    <div class="field mb-5">
+      <label class="field-label" for="login-password">Password</label>
+      <input class="field-input" id="login-password" name="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
+      <p class="form-error-msg"></p>
+    </div>
+    <button type="submit" class="w-full btn btn-primary flex items-center justify-center gap-2">Sign in <span class="material-symbols-outlined">arrow_forward</span></button>
+  </form>
+
+  <div class="mt-8">
+    <p class="text-center font-label-caps text-label-caps text-on-surface-variant mb-4">Demo accounts — tap to autofill</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <button class="demo-login bg-surface-container-low border border-outline-variant/50 rounded-xl p-3 text-left hover:border-secondary transition-all" data-email="patient@ruby.demo" data-pass="demo123">
+        <p class="font-headline-md text-[13px]">Patient</p><p class="font-data-mono text-[10px] text-secondary break-all">patient@ruby.demo</p>
+      </button>
+      <button class="demo-login bg-surface-container-low border border-outline-variant/50 rounded-xl p-3 text-left hover:border-secondary transition-all" data-email="donor@ruby.demo" data-pass="demo123">
+        <p class="font-headline-md text-[13px]">Donor</p><p class="font-data-mono text-[10px] text-secondary break-all">donor@ruby.demo</p>
+      </button>
+      <button class="demo-login bg-surface-container-low border border-outline-variant/50 rounded-xl p-3 text-left hover:border-secondary transition-all" data-email="hospital@ruby.demo" data-pass="demo123">
+        <p class="font-headline-md text-[13px]">Hospital</p><p class="font-data-mono text-[10px] text-secondary break-all">hospital@ruby.demo</p>
+      </button>
+      <button class="demo-login bg-surface-container-low border border-outline-variant/50 rounded-xl p-3 text-left hover:border-secondary transition-all" data-email="admin@ruby.demo" data-pass="admin123">
+        <p class="font-headline-md text-[13px]">Admin</p><p class="font-data-mono text-[10px] text-secondary break-all">admin@ruby.demo</p>
+      </button>
+    </div><p class="text-center text-[12px] text-on-surface-variant mt-4">Passwords: <span class="font-data-mono">demo123</span> (admin: <span class="font-data-mono">admin123</span>) · Prototype only</p>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/login.js"></script>
+</body>
+</html>

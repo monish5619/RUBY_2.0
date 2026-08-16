@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Transparency Ledger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="ledger">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div>
+      <span class="font-label-caps text-label-caps text-secondary">Transparency</span>
+      <h1 class="font-headline-lg text-headline-lg mt-1 mb-2">Prototype ledger</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Every donation and disbursement recorded on the simulated RUBY ledger. All hashes and records are demo data — no real chain is involved.</p>
+    </div>
+    <div class="flex gap-2">
+      <span class="status-badge escrow">Escrow</span>
+      <span class="status-badge disbursed">Disbursed</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+    <div class="rounded-2xl bg-on-surface text-surface p-6">
+      <p class="font-label-caps text-label-caps text-surface/60 mb-1">Total donated (prototype)</p>
+      <p class="font-data-mono text-[26px] font-bold text-secondary-fixed-dim" id="ledger-total">—</p>
+    </div>
+    <div class="card p-6">
+      <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Currently in escrow</p>
+      <p class="font-data-mono text-[26px] font-bold" id="ledger-escrow">—</p>
+    </div>
+    <div class="card p-6">
+      <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Disbursed to hospitals</p>
+      <p class="font-data-mono text-[26px] font-bold text-tertiary-container" id="ledger-disbursed">—</p>
+    </div>
+  </div>
+
+  <div class="panel overflow-hidden">
+    <div class="flex flex-col md:flex-row gap-3 p-5 border-b border-outline-variant/30">
+      <div class="relative flex-1">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" style="font-size:18px;">search</span>
+        <input class="field-input pl-11" id="ledger-search" type="search" placeholder="Search transaction, case, donor…"/>
+      </div>
+      <select class="field-input md:w-56" id="ledger-status" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option>ESCROW</option>
+        <option>SETTLED</option>
+      </select>
+    </div>
+    <div class="overflow-x-auto no-scrollbar">
+      <table class="w-full text-left text-[13px] min-w-[860px]">
+        <thead class="bg-surface-container font-label-caps text-label-caps text-on-surface-variant">
+          <tr>
+            <th class="p-4">Transaction</th><th class="p-4">Case</th><th class="p-4">Donor</th><th class="p-4 text-right">Amount</th><th class="p-4">Status</th><th class="p-4">Block hash</th><th class="p-4">Timestamp</th>
+          </tr>
+        </thead>
+        <tbody id="ledger-rows">
+          <tr><td colspan="7" class="p-6"><div class="skeleton h-10"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/ledger.js"></script>
+</body>
+</html>

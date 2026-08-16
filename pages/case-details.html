@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Case Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="case-details">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <a href="/pages/cases.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps hover:underline mb-6"><span class="material-symbols-outlined text-[16px]">arrow_back</span>All cases</a>
+
+  <div id="cd-skeleton">
+    <div class="skeleton h-64 rounded-3xl mb-6"></div>
+    <div class="skeleton h-40 rounded-3xl"></div>
+  </div>
+
+  <div id="cd-body" class="hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <!-- Left: case info -->
+      <div class="lg:col-span-8 space-y-6">
+        <div class="panel p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-5 mb-6">
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-on-primary flex items-center justify-center font-headline-md text-[26px] font-bold shrink-0" id="cd-avatar">�</div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <h1 class="font-headline-lg text-headline-lg leading-tight" id="cd-treatment">—</h1>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-2"><span id="cd-patient">—</span> · <span id="cd-age">—</span> yrs · <span id="cd-location">—</span></p>
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="cd-verification-badge"></span>
+                <span id="cd-status-badge"></span>
+                <span id="cd-urgency-badge"></span>
+              </div>
+            </div>
+          </div>
+
+          <dl class="grid grid-cols-2 md:grid-cols-4 gap-4 text-[13px]">
+            <div><dt class="text-on-surface-variant">Case ID</dt><dd class="font-data-mono font-semibold" id="cd-id">—</dd></div>
+            <div><dt class="text-on-surface-variant">Hospital</dt><dd class="font-semibold" id="cd-hospital">—</dd></div>
+            <div><dt class="text-on-surface-variant">Department</dt><dd id="cd-department">—</dd></div>
+            <div><dt class="text-on-surface-variant">Deadline</dt><dd class="font-data-mono" id="cd-deadline">—</dd></div>
+          </dl>
+        </div>
+
+        <div class="panel p-6 md:p-8">
+          <h2 class="font-headline-md text-headline-md mb-4">Medical summary</h2>
+          <dl class="space-y-3 text-[14px]">
+            <div class="grid sm:grid-cols-3 gap-1"><dt class="text-on-surface-variant">Diagnosis</dt><dd class="sm:col-span-2 font-medium" id="cd-diagnosis">—</dd></div>
+            <div class="grid sm:grid-cols-3 gap-1"><dt class="text-on-surface-variant">Treatment</dt><dd class="sm:col-span-2 font-medium" id="cd-treatment-detail">—</dd></div>
+            <div class="grid sm:grid-cols-3 gap-1"><dt class="text-on-surface-variant">Procedure</dt><dd class="sm:col-span-2" id="cd-procedure">—</dd></div>
+            <div class="grid sm:grid-cols-3 gap-1"><dt class="text-on-surface-variant">Est. cost</dt><dd class="sm:col-span-2 font-data-mono" id="cd-est">—</dd></div>
+            <div class="grid sm:grid-cols-3 gap-1"><dt class="text-on-surface-variant">Duration</dt><dd class="sm:col-span-2" id="cd-duration">—</dd></div>
+          </dl>
+          <h3 class="font-headline-md text-[16px] mt-6 mb-2">The patient's story</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" id="cd-story">—</p>
+          <h3 class="font-headline-md text-[16px] mt-6 mb-2">How funds will be used</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" id="cd-usage">—</p>
+          <h3 class="font-headline-md text-[16px] mt-6 mb-3">Supporting documents</h3>
+          <div id="cd-docs" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <div class="panel p-6 md:p-8">
+          <h2 class="font-headline-md text-headline-md mb-4">Verification timeline</h2>
+          <ol id="cd-timeline" class="space-y-2"></ol>
+        </div>
+      </div>
+
+      <!-- Right: funding + donate -->
+      <aside class="lg:col-span-4">
+        <div class="sticky top-28 flex flex-col gap-5">
+          <div class="panel p-6 md:p-8">
+            <h2 class="font-headline-md text-headline-md mb-4">Funding progress</h2>
+            <div id="cd-funding"></div>
+          </div>
+          <div class="rounded-3xl bg-primary text-on-primary p-6 md:p-8">
+            <h2 class="font-headline-md text-headline-md mb-2">Support this case</h2>
+            <p class="font-body-sm text-body-sm text-on-primary/85 mb-5">Your contribution goes into prototype escrow until a verified medical milestone is completed.</p>
+            <a href="/pages/cases.html" id="cd-donate-btn" class="block text-center bg-white text-primary font-label-caps text-label-caps px-8 py-4 rounded-xl hover:bg-primary-fixed transition-colors">Donate Now</a>
+            <p class="text-center text-[11px] text-on-primary/70 mt-3">Payment Gateway — Test Mode</p>
+          </div>
+          <div class="rounded-3xl bg-secondary text-on-secondary p-6">
+            <h3 class="font-headline-md text-[16px] mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">account_balance</span>Transparency</h3>
+            <dl class="space-y-2 text-[13px]">
+              <div class="flex justify-between"><dt>Target</dt><dd class="font-data-mono" id="cd-t-target">—</dd></div>
+              <div class="flex justify-between"><dt>Raised</dt><dd class="font-data-mono" id="cd-t-raised">—</dd></div>
+              <div class="flex justify-between"><dt>Remaining</dt><dd class="font-data-mono" id="cd-t-remaining">—</dd></div>
+              <div class="flex justify-between"><dt>Disbursed</dt><dd class="font-data-mono" id="cd-t-disbursed">—</dd></div>
+            </dl>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/case-details.js"></script>
+</body>
+</html>

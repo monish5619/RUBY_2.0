@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — How It Works</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="how">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-5xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div class="text-center max-w-2xl mx-auto mb-12">
+    <span class="font-label-caps text-label-caps text-secondary">How RUBY Works</span>
+    <h1 class="font-headline-lg text-headline-lg mt-2 mb-3">A transparent path from diagnosis to disbursement</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant">Every rupee is verified, escrowed, and publicly accounted for.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+    <div class="panel p-6 md:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold">01</div>
+        <h2 class="font-headline-md text-[18px]">Patient gets a RUPID</h2>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Patients verify their identity through the multi-step flow (demographic, documents, OTP) and receive a unique RUBY Universal Patient ID with a verification score.</p>
+      <a href="/pages/register.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps mt-4 hover:underline">Get RUPID <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+    <div class="panel p-6 md:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center font-bold">02</div>
+        <h2 class="font-headline-md text-[18px]">Appeal is created</h2>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The patient builds a fund appeal: diagnosis, treatment plan, cost estimate, funding target, story and supporting documents.</p>
+      <a href="/pages/appeal.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps mt-4 hover:underline">Start an appeal <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+    <div class="panel p-6 md:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 text-tertiary-container flex items-center justify-center font-bold">03</div>
+        <h2 class="font-headline-md text-[18px]">AI-assisted verification</h2>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">An AI-assisted check flags inconsistencies in the medical documents. It scores the case as Low, Medium or High risk — the hospital decides, never the AI.</p>
+      <a href="/pages/verification.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps mt-4 hover:underline">See the flow <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+    <div class="panel p-6 md:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold">04</div>
+        <h2 class="font-headline-md text-[18px]">Hospital verifies the case</h2>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The attending partner hospital confirms the diagnosis, treatment plan and cost estimate on the hospital dashboard before any money is asked for.</p>
+      <a href="/pages/hospital-dashboard.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps mt-4 hover:underline">Hospital portal <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+    <div class="panel p-6 md:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center font-bold">05</div>
+        <h2 class="font-headline-md text-[18px]">Donors fund the case</h2>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Only verified, published cases appear publicly. Donors give in INR via simulated UPI / card / net banking, and each payment is recorded with a transaction ID.</p>
+      <a href="/pages/cases.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps mt-4 hover:underline">Browse cases <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+    <div class="panel p-6 md:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 text-tertiary-container flex items-center justify-center font-bold">06</div>
+        <h2 class="font-headline-md text-[18px]">Escrow → milestone → disbursement</h2>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Donations rest in prototype escrow. As treatment milestones are met, funds are released to the hospital — approved by the hospital and recorded publicly on the ledger.</p>
+      <a href="/pages/ledger.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps mt-4 hover:underline">View ledger <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+  </div>
+
+  <div class="panel-dark p-8 text-center">
+    <h2 class="font-headline-lg text-[22px] mb-2">Built for trust, not for speed.</h2>
+    <p class="text-[15px] text-surface/75 max-w-xl mx-auto mb-6">Verification before fundraising. Escrow during treatment. A public ledger after every rupee.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="/pages/cases.html" class="btn btn-secondary px-7 py-3.5 rounded-xl hover:bg-secondary/90 transition-all">Start donating</a>
+      <a href="/pages/register.html" class="bg-white/10 border border-white/30 font-label-caps text-label-caps px-7 py-3.5 rounded-xl hover:bg-white/20 transition-colors">Start an appeal</a>
+    </div>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

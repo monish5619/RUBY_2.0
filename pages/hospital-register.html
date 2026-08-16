@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Hospital Partner Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="hospital-register">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div class="mb-10">
+    <span class="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-1 rounded-full w-fit font-label-caps text-label-caps mb-3"><span class="material-symbols-outlined text-[16px]">verified</span>Verified Institution Portal</span>
+    <h1 class="font-headline-lg text-headline-lg mb-2">Join the RUBY network</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Register your institution to verify patient cases, manage disbursements and connect with donors. All verification steps are simulated in this prototype.</p>
+  </div>
+
+  <div id="hospital-form-wrap">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <!-- Form -->
+      <div class="lg:col-span-7">
+        <form id="hospital-form" class="panel p-6 md:p-8 shadow-glass" novalidate>
+          <h2 class="font-headline-md text-headline-md mb-6">Institution Registration</h2>
+          <div id="errors-summary" class="hidden mb-4 rounded-xl bg-error-container/60 border border-error/20 p-4 text-error" data-errors-summary tabindex="-1"></div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="field md:col-span-2">
+              <label class="field-label" for="h-name">Official Medical Institution Name *</label>
+              <input class="field-input" id="h-name" name="hospitalName" type="text" placeholder="e.g. Meera Multispeciality Hospital"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-reg">Registration Number *</label>
+              <input class="field-input mono" id="h-reg" name="registrationNumber" type="text" placeholder="HSP-MH-2021-0042"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-type">Hospital Type *</label>
+              <select class="field-input" id="h-type" name="hospitalType">
+                <option value="">Select type</option>
+                <option>Multispeciality Hospital</option>
+                <option>Super-speciality Hospital</option>
+                <option>Paediatric Hospital</option>
+                <option>Specialty Clinic</option>
+                <option>Government / District Hospital</option>
+              </select>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-address">Address *</label>
+              <input class="field-input" id="h-address" name="address" type="text" placeholder="Street, area"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-city">City / State *</label>
+              <input class="field-input" id="h-city" name="city" type="text" placeholder="e.g. Mumbai, Maharashtra"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-phone">Contact Phone *</label>
+              <input class="field-input mono" id="h-phone" name="contactPhone" type="tel" placeholder="+91 22 4000 0000"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-email">Contact Email *</label>
+              <input class="field-input" id="h-email" name="contactEmail" type="email" placeholder="partners@hospital.example"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-admin">Administrator Name *</label>
+              <input class="field-input" id="h-admin" name="adminName" type="text" placeholder="Authorised representative"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-admin-email">Administrator Email *</label>
+              <input class="field-input" id="h-admin-email" name="adminEmail" type="email" placeholder="admin@hospital.example"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-license">Medical License *</label>
+              <input class="field-input mono" id="h-license" name="license" type="text" placeholder="LIC-MH-XXXX"/>
+              <p class="form-error-msg"></p>
+            </div>
+            <div class="field">
+              <label class="field-label" for="h-bank">Bank Account (last 4 digits only — masked) *</label>
+              <input class="field-input mono" id="h-bank" name="bankLast4" type="text" inputmode="numeric" maxlength="4" placeholder="••••"/>
+              <p class="form-error-msg"></p>
+            </div>
+          </div>
+
+          <div class="field mt-5">
+            <label class="field-label">Operating Certificate / License Documents *</label>
+            <div class="border-2 border-dashed border-outline-variant rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-secondary/50 hover:bg-surface-container-low transition-colors" id="h-drop">
+              <span class="material-symbols-outlined text-secondary text-[26px] mb-2">upload_file</span>
+              <p class="font-body-sm text-body-sm text-on-surface">Drag &amp; drop documents here, or <span class="text-secondary font-semibold">browse</span></p>
+              <p class="font-label-caps text-label-caps text-on-surface-variant/60 mt-1">PDF, JPG, PNG · up to 10 MB</p>
+              <p class="doc-name text-[13px] font-semibold text-on-surface mt-2"></p>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="hidden" id="h-doc-input" multiple/>
+            </div>
+            <p class="form-error-msg" id="h-doc-error"></p>
+          </div>
+
+          <div class="flex items-start gap-3 mt-5 bg-secondary/5 p-4 rounded-xl border border-secondary/10">
+            <input class="w-4 h-4 text-secondary border-outline-variant rounded focus:ring-secondary/50 mt-1" id="h-terms" name="terms" type="checkbox"/>
+            <label class="font-body-sm text-body-sm text-on-surface-variant leading-tight cursor-pointer" for="h-terms">I confirm I am an authorised representative of this institution and agree to the RUBY Hospital Partnership Agreement (prototype terms). *</label>
+          </div>
+
+          <button type="submit" class="mt-6 w-full btn btn-primary transition-all flex items-center justify-center gap-2">
+            Initialize Partnership Request <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Info -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="rounded-3xl bg-secondary text-on-secondary p-6 relative overflow-hidden">
+          <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, #fff 1px, transparent 0); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <h3 class="font-headline-md text-[20px] mb-5 flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed-dim">workspace_premium</span>Partner privileges</h3>
+            <ul class="space-y-4">
+              <li class="flex gap-3"><span class="material-symbols-outlined text-secondary-fixed-dim">security</span><div><p class="font-body-sm font-bold">Milestone-based disbursement</p><p class="text-[13px] text-on-secondary/80">Funds release to the institution on verified medical milestones (prototype).</p></div></li>
+              <li class="flex gap-3"><span class="material-symbols-outlined text-secondary-fixed-dim">monitoring</span><div><p class="font-body-sm font-bold">Patient case pipeline</p><p class="text-[13px] text-on-secondary/80">Verify appeals and manage funding status from one dashboard.</p></div></li>
+              <li class="flex gap-3"><span class="material-symbols-outlined text-secondary-fixed-dim">policy</span><div><p class="font-body-sm font-bold">Immutable records</p><p class="text-[13px] text-on-secondary/80">Every disbursement is recorded on the prototype transparency ledger.</p></div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel p-6">
+          <h3 class="font-headline-md text-headline-md mb-4">Verification steps</h3>
+          <ol class="space-y-3">
+            <li class="flex items-center gap-3"><span class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-[13px] font-bold">1</span><span>Document Submitted</span></li>
+            <li class="flex items-center gap-3"><span class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-[13px] font-bold">2</span><span>Institution Checked</span></li>
+            <li class="flex items-center gap-3"><span class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-[13px] font-bold">3</span><span>License Checked</span></li>
+            <li class="flex items-center gap-3"><span class="w-7 h-7 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-[13px] font-bold">4</span><span>Admin Review</span></li>
+            <li class="flex items-center gap-3"><span class="w-7 h-7 rounded-full bg-tertiary-container/10 text-tertiary-container flex items-center justify-center text-[13px] font-bold">5</span><span>Partner Approved</span></li>
+          </ol>
+          <a href="/pages/hospital-dashboard.html" class="block text-center mt-5 border border-secondary text-secondary font-label-caps text-label-caps py-3 rounded-xl hover:bg-secondary/5 transition-colors">Hospital Dashboard →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success / status -->
+  <section id="hospital-success" class="hidden">
+    <div class="max-w-2xl mx-auto text-center py-8">
+      <div class="w-16 h-16 mx-auto rounded-full bg-secondary/10 text-secondary flex items-center justify-center mb-5"><span class="material-symbols-outlined" style="font-size:32px;">local_hospital</span></div>
+      <h1 class="font-headline-lg text-headline-lg mb-2">Partnership request submitted</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-8">Your institution is now in prototype review. Track the steps below.</p>
+      <div class="panel p-6 md:p-8 text-left mb-8">
+        <div class="flex items-center justify-between mb-4">
+          <div><p class="font-label-caps text-label-caps text-on-surface-variant">Hospital ID</p><p class="font-data-mono text-data-mono text-[18px] font-bold text-primary" id="hs-id">—</p></div>
+          <span class="status-badge review"><span class="material-symbols-outlined text-[13px]">manage_search</span>Under Review</span>
+        </div>
+        <ol id="hs-steps" class="space-y-3">
+          <li class="tl-item"><span class="tl-dot done"></span><p class="font-body-md font-semibold">Document Submitted</p><p class="font-body-sm text-body-sm text-on-surface-variant">Files recorded (metadata only).</p></li>
+          <li class="tl-item"><span class="tl-dot active"></span><p class="font-body-md font-semibold">Institution Checked</p><p class="font-body-sm text-body-sm text-on-surface-variant">Simulated cross-reference in progress.</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">License Checked</p><p class="font-body-sm text-body-sm text-on-surface-variant">Awaiting check.</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">Admin Review</p><p class="font-body-sm text-body-sm text-on-surface-variant">Awaiting human admin review.</p></li>
+          <li class="tl-item"><span class="tl-dot"></span><p class="font-body-md font-semibold">Partner Approved</p><p class="font-body-sm text-body-sm text-on-surface-variant">Once an admin approves, cases can be verified.</p></li>
+        </ol>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/pages/hospital-dashboard.html" class="flex-1 btn btn-primary py-4 rounded-xl hover:bg-primary-container transition-all">Go to Hospital Dashboard</a>
+        <a href="/pages/cases.html" class="flex-1 border border-secondary text-secondary font-label-caps text-label-caps py-4 rounded-xl hover:bg-secondary/5 transition-all">Browse Cases</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/hospital.js"></script>
+</body>
+</html>

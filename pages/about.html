@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — About &amp; Trust</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="about">
+<div id="nav-root"></div>
+
+<main class="flex-grow w-full max-w-4xl mx-auto px-container-padding-mobile md:px-container-desktop py-8 md:py-12">
+  <div class="mb-10">
+    <span class="font-label-caps text-label-caps text-secondary">About RUBY</span>
+    <h1 class="font-headline-lg text-headline-lg mt-1 mb-3">Medical crowdfunding, rebuilt around verification</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant">RUBY is a prototype that demonstrates how AI-assisted verification, hospital partnerships, milestone escrow and a public ledger can restore trust in medical fundraising.</p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    <div class="panel p-6 md:p-8">
+      <h2 class="font-headline-md text-[18px] mb-2">Why RUBY?</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Traditional crowdfunding trusts the campaigner alone. RUBY puts three independent checks in the path: an AI-assisted document scan, an attending hospital's medical confirmation, and a human admin's final review — before a single rupee is solicited.</p>
+    </div>
+    <div class="panel p-6 md:p-8">
+      <h2 class="font-headline-md text-[18px] mb-2">The escrow model</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Donations do not go directly to the patient. They rest in prototype escrow and are released to the partner hospital against treatment milestones. This protects donors from misuse and patients from losing funds to non-medical expenses.</p>
+    </div>
+    <div class="panel p-6 md:p-8">
+      <h2 class="font-headline-md text-[18px] mb-2">The transparency ledger</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Every donation and disbursement carries a transaction ID and a mock block hash, visible to anyone. The demo ledger shows the design; a production deployment would anchor to a public chain.</p>
+      <a href="/pages/ledger.html" class="inline-flex items-center gap-1 text-secondary font-label-caps text-label-caps mt-4 hover:underline">Explore the ledger <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+    <div class="panel-dark p-6 md:p-8">
+      <h2 class="font-headline-md text-[18px] mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed-dim">science</span>Prototype boundaries</h2>
+      <ul class="space-y-2.5 text-[14px] text-surface/85">
+        <li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">close</span>All names, hospitals and figures are fictional demo data.</li>
+        <li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">close</span>No real hospital, government, banking or payment systems are connected.</li>
+        <li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">close</span>Payments are simulated in test mode — no real money moves.</li>
+        <li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">close</span>AI verification is deterministic demo logic, never a medical decision.</li>
+        <li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">close</span>The ledger hashes are mock values shown for demonstration.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-4">
+    <div class="card p-5 text-center"><span class="material-symbols-outlined text-primary">verified_user</span><p class="font-headline-md text-[14px] mt-2">Verified patients</p></div>
+    <div class="card p-5 text-center"><span class="material-symbols-outlined text-primary">account_balance</span><p class="font-headline-md text-[14px] mt-2">Milestone escrow</p></div>
+    <div class="card p-5 text-center"><span class="material-symbols-outlined text-primary">visibility</span><p class="font-headline-md text-[14px] mt-2">Public ledger</p></div>
+  </div>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

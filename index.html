@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RUBY — Bridging the Gap in Medical Funding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="/css/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/assets/logo/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/logo/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/logo/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col overflow-x-hidden" data-page="home">
+<div id="nav-root"></div>
+
+<main class="flex-grow">
+  <!-- Prototype banner -->
+  <div class="prototype-banner text-center px-4 py-2.5 text-[11px] font-label-caps tracking-wider">
+    <span class="material-symbols-outlined text-[13px] align-middle mr-1.5">science</span>Prototype environment — all verifications, AI analyses and payments are simulated. Not a medical or legal service.
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section class="relative w-full overflow-hidden">
+    <div class="bg-hero-gradient absolute inset-0"></div>
+    <div class="absolute -top-20 -right-20 w-72 h-72 bg-primary/10 rounded-full blur-[90px]"></div>
+    <div class="absolute bottom-0 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-[90px]"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+      <div class="lg:col-span-7 flex flex-col items-start gap-6">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-caps text-label-caps">
+          <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+          Verified medical cases · Transparent funding · Direct support
+        </span>
+        <h1 class="font-display-lg text-4xl md:text-5xl xl:text-display-lg text-on-background leading-[1.08] max-w-2xl">
+          Bridging the gap in <span class="text-primary relative inline-block">medical funding<span class="absolute left-0 right-0 -bottom-1.5 h-[3px] rounded-full bg-gradient-to-r from-primary/70 to-trust/40"></span></span>
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+          Every appeal is verified with our partner hospitals and AI-assisted checks, so your donation
+          reaches a real, confirmed treatment. Track every rupee from donation to disbursement.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-1">
+          <a href="/pages/cases.html" class="btn btn-primary px-8 py-4 text-[13px]">
+            <span class="material-symbols-outlined text-[18px]">favorite</span> Find a Medical Case
+          </a>
+          <a id="cta-create-appeal" href="/pages/register.html" class="btn btn-outline px-8 py-4 text-[13px]">
+            <span class="material-symbols-outlined text-[18px]">add_circle</span> Create a Fund Appeal
+          </a>
+        </div>
+        <a href="/pages/hospital-register.html" class="link-underline inline-flex items-center gap-2 font-label-caps text-label-caps">
+          <span class="material-symbols-outlined text-[16px]">local_hospital</span> Become a Hospital Partner
+        </a>
+
+        <!-- Trust indicators -->
+        <div class="flex flex-wrap items-center gap-3 mt-6 pt-6 border-t border-outline-variant/30 w-full">
+          <span class="inline-flex items-center gap-1.5 text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-tertiary-container">verified</span> Verified Patients</span>
+          <span class="inline-flex items-center gap-1.5 text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-secondary">local_hospital</span> Partner Hospitals</span>
+          <span class="inline-flex items-center gap-1.5 text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-primary">account_balance</span> Transparent Funding</span>
+          <span class="inline-flex items-center gap-1.5 text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-tertiary-container">lock</span> Secure Transactions</span>
+        </div>
+      </div>
+
+      <!-- Right: live stats + top donors -->
+      <div class="lg:col-span-5 mt-12 lg:mt-0 relative">
+        <div class="glass-card card-accent rounded-3xl p-6 shadow-soft relative z-10">
+          <div class="flex items-center justify-between mb-5 pb-4 border-b border-outline-variant/30">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">social_leaderboard</span>
+              </div>
+              <div>
+                <h3 class="font-headline-md text-[18px] leading-tight">Live platform pulse</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Prototype transparency data</p>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 bg-surface-container-low rounded-lg flex items-center gap-1.5 border border-outline-variant/50">
+              <span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+              <span class="font-data-mono text-[10px] text-on-surface-variant">LIVE</span>
+            </span>
+          </div>
+          <div id="home-stats" class="grid grid-cols-2 gap-3 mb-5">
+            <div class="rounded-xl bg-surface-container-low p-4"><div class="skeleton h-6 w-20"></div><div class="skeleton h-3 w-24 mt-2"></div></div>
+            <div class="rounded-xl bg-surface-container-low p-4"><div class="skeleton h-6 w-20"></div><div class="skeleton h-3 w-24 mt-2"></div></div>
+            <div class="rounded-xl bg-surface-container-low p-4"><div class="skeleton h-6 w-20"></div><div class="skeleton h-3 w-24 mt-2"></div></div>
+            <div class="rounded-xl bg-surface-container-low p-4"><div class="skeleton h-6 w-20"></div><div class="skeleton h-3 w-24 mt-2"></div></div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-outline-variant/30">
+            <p class="font-label-caps text-label-caps text-on-surface-variant mb-3">Top supporters</p>
+            <div id="home-top-donors" class="flex flex-col gap-2">
+              <div class="skeleton h-10"></div><div class="skeleton h-10"></div><div class="skeleton h-10"></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-outline-variant/30 flex items-center justify-center gap-2 text-on-surface-variant font-body-sm text-[12px]">
+            <span class="material-symbols-outlined text-[14px]">lock</span> Donation amounts hidden for privacy.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-section-gap">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="eyebrow justify-center">How RUBY Works</span>
+      <h2 class="section-title text-on-surface mt-3">From diagnosis to disbursement, one trusted path</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-3">A fully auditable journey that protects patients and donors alike.</p>
+    </div>
+    <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" aria-label="RUBY flow steps">
+      <li class="card card-hover p-6 flex flex-col gap-3 relative overflow-hidden">
+        <span class="absolute top-5 right-5 font-data-mono text-[30px] font-bold text-primary/10">01</span>
+        <span class="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center"><span class="material-symbols-outlined">person</span></span>
+        <h3 class="font-headline-md text-[18px]">Patient registers</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">A patient creates their RUPID — the RUBY Universal Patient ID — with verified identity documents.</p>
+      </li>
+      <li class="card card-hover p-6 flex flex-col gap-3 relative overflow-hidden">
+        <span class="absolute top-5 right-5 font-data-mono text-[30px] font-bold text-primary/10">02</span>
+        <span class="w-11 h-11 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center"><span class="material-symbols-outlined">verified_user</span></span>
+        <h3 class="font-headline-md text-[18px]">Verification</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">AI-assisted checks flag inconsistencies. Documents are cross-checked by the attending hospital.</p>
+      </li>
+      <li class="card card-hover p-6 flex flex-col gap-3 relative overflow-hidden">
+        <span class="absolute top-5 right-5 font-data-mono text-[30px] font-bold text-primary/10">03</span>
+        <span class="w-11 h-11 rounded-xl bg-primary-fixed-dim text-on-primary-fixed-variant flex items-center justify-center"><span class="material-symbols-outlined">campaign</span></span>
+        <h3 class="font-headline-md text-[18px]">Appeal is created</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">A verified appeal with treatment plan, cost estimate and a clear funding target is published.</p>
+      </li>
+      <li class="card card-hover p-6 flex flex-col gap-3 relative overflow-hidden">
+        <span class="absolute top-5 right-5 font-data-mono text-[30px] font-bold text-primary/10">04</span>
+        <span class="w-11 h-11 rounded-xl bg-tertiary-container/10 text-tertiary-container flex items-center justify-center"><span class="material-symbols-outlined">volunteer_activism</span></span>
+        <h3 class="font-headline-md text-[18px]">Donors contribute</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Supporters fund cases directly in INR, with every transaction recorded on the prototype ledger.</p>
+      </li>
+      <li class="card card-hover p-6 flex flex-col gap-3 relative overflow-hidden">
+        <span class="absolute top-5 right-5 font-data-mono text-[30px] font-bold text-primary/10">05</span>
+        <span class="w-11 h-11 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center"><span class="material-symbols-outlined">local_hospital</span></span>
+        <h3 class="font-headline-md text-[18px]">Hospital holds funds in escrow</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Funds stay in prototype escrow until a medical milestone is verified by the partner hospital.</p>
+      </li>
+      <li class="card card-hover p-6 flex flex-col gap-3 relative overflow-hidden">
+        <span class="absolute top-5 right-5 font-data-mono text-[30px] font-bold text-primary/10">06</span>
+        <span class="w-11 h-11 rounded-xl bg-tertiary-container/10 text-tertiary-container flex items-center justify-center"><span class="material-symbols-outlined">account_balance_wallet</span></span>
+        <h3 class="font-headline-md text-[18px]">Verified disbursement</h3>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Approved milestones are disbursed to the hospital, and donors can see every rupee settled.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ================= FEATURED CASES ================= -->
+  <section class="bg-surface-container-low py-section-gap">
+    <div class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="eyebrow">Featured Medical Cases</span>
+          <h2 class="section-title text-on-surface mt-3">Real needs, verified by partner hospitals</h2>
+        </div>
+        <a href="/pages/cases.html" class="link-underline inline-flex items-center gap-1.5 font-label-caps text-label-caps"><span>View all cases</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+      </div>
+      <div id="featured-cases" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="skeleton h-72"></div><div class="skeleton h-72"></div><div class="skeleton h-72"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VERIFICATION SYSTEM ================= -->
+  <section class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-section-gap">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+      <div class="lg:col-span-5">
+        <span class="eyebrow">Verification System</span>
+        <h2 class="section-title text-on-surface mt-3 mb-4">Trust is engineered, not assumed</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">Every appeal passes through multiple independent checks before it becomes public. The final decision always belongs to a human admin.</p>
+        <a href="/pages/verification.html" class="btn btn-secondary">
+          Explore the verification flow <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="card card-hover p-6">
+          <span class="material-symbols-outlined text-secondary mb-3">badge</span>
+          <h3 class="font-headline-md text-[18px] mb-1">RUPID</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">A unique patient identity generated after document verification, e.g. RBY-8842-991A-CX.</p>
+        </div>
+        <div class="card card-hover p-6">
+          <span class="material-symbols-outlined text-primary mb-3">local_hospital</span>
+          <h3 class="font-headline-md text-[18px] mb-1">Hospital Verification</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">The attending hospital confirms diagnosis, treatment plan and cost estimate.</p>
+        </div>
+        <div class="card card-hover p-6">
+          <span class="material-symbols-outlined text-tertiary-container mb-3">description</span>
+          <h3 class="font-headline-md text-[18px] mb-1">Document Verification</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Medical reports, estimates and prescriptions are reviewed and linked to the case.</p>
+        </div>
+        <div class="card card-hover p-6">
+          <span class="material-symbols-outlined text-secondary mb-3">psychology_alt</span>
+          <h3 class="font-headline-md text-[18px] mb-1">AI-Assisted + Manual Review</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">AI flags inconsistencies (prototype); a human admin makes the final decision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRANSPARENCY ================= -->
+  <section class="bg-on-surface text-surface py-section-gap relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, #fff 1px, transparent 0); background-size: 26px 26px;"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="font-label-caps text-label-caps text-secondary-fixed-dim">Transparency</span>
+        <h2 class="font-headline-lg text-headline-lg mt-2">Every rupee, accounted for</h2>
+      </div>
+      <div id="transparency-stats" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6 text-center backdrop-blur-sm"><div class="skeleton h-8 w-24 mx-auto"></div><div class="skeleton h-4 w-28 mx-auto mt-3"></div></div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6 text-center backdrop-blur-sm"><div class="skeleton h-8 w-24 mx-auto"></div><div class="skeleton h-4 w-28 mx-auto mt-3"></div></div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6 text-center backdrop-blur-sm"><div class="skeleton h-8 w-24 mx-auto"></div><div class="skeleton h-4 w-28 mx-auto mt-3"></div></div>
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-6 text-center backdrop-blur-sm"><div class="skeleton h-8 w-24 mx-auto"></div><div class="skeleton h-4 w-28 mx-auto mt-3"></div></div>
+      </div>
+      <p class="text-center text-[12px] text-surface/50 mt-8 font-label-caps">Prototype ledger — figures are simulated for demonstration.</p>
+    </div>
+  </section>
+
+  <!-- ================= PARTNER HOSPITALS ================= -->
+  <section class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop py-section-gap">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="eyebrow">Partner Hospitals</span>
+        <h2 class="section-title text-on-surface mt-3">Institutions on the RUBY network</h2>
+      </div>
+      <a href="/pages/hospital-register.html" class="link-underline inline-flex items-center gap-1.5 font-label-caps text-label-caps"><span>Become a partner</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+    </div>
+    <div id="partner-hospitals" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="skeleton h-40"></div><div class="skeleton h-40"></div><div class="skeleton h-40"></div>
+    </div>
+  </section>
+
+  <!-- ================= EMERGENCY CTA ================= -->
+  <section class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-desktop pb-section-gap">
+    <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary via-primary-container to-trust-deep text-on-primary p-8 md:p-14">
+      <div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 2px 2px, #fff 1px, transparent 0); background-size: 22px 22px;"></div>
+      <div class="absolute -right-10 -top-10 opacity-15 w-40 h-40 pointer-events-none">
+        <img src="/assets/logo/ruby-logo-icon.svg" alt="" class="w-full h-full select-none" draggable="false"/>
+      </div>
+      <div class="relative z-10 max-w-xl flex flex-col items-start gap-4">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 font-label-caps text-label-caps"><span class="material-symbols-outlined text-[15px]">volunteer_activism</span>Your support matters</span>
+        <h2 class="font-headline-lg text-headline-lg mb-1">A little support can change everything</h2>
+        <p class="font-body-md text-body-md text-on-primary/90 mb-2 leading-relaxed">Browse verified cases, contribute any amount, and watch the impact through our transparent prototype ledger.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/pages/cases.html" class="btn btn-light px-8 py-4 text-[13px]">Support a Case</a>
+          <a id="cta-start-appeal" href="/pages/register.html" class="btn px-8 py-4 text-[13px] bg-white/10 text-white border border-white/50 hover:bg-white/20">Start an Appeal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="footer-root"></div>
+
+<script src="/js/storage.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/validation.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/cases.js"></script>
+<script src="/js/home.js"></script>
+</body>
+</html>
